@@ -1,0 +1,81 @@
+#____________________________________________________________Holiday Lights_____________________________________________________________
+
+#________________lights yaml________________________
+- platform: mqtt_json
+  name: "Holiday Lights"
+  state_topic: "holidayLights/state"
+  command_topic: "holidayLights/commands"
+  effect: true
+  brightness: true
+  effect_list:
+    - Color_Chase
+    #- Color_Glitter
+    #- Single_Race
+    - Double_Crash
+    #- Rainbow
+    - Blocked_Colors
+    - BPM
+    - Blue_Twinkle
+    - White_Twinkle
+    - Fire
+    - Spooky_Eyes
+    - Halloween
+    - Christmas_Chase
+    - Christmas_Blocks
+    - Christmas_Blue_Twinkle
+    - Christmas_White_Twinkle
+    - Solid
+    - Solid_Blocks
+    - Miami
+    - LED_Locator
+  qos: 1
+- platform: mqtt_json
+  name: "Holiday Lights Color 1"
+  state_topic: "holidayLights/state1"
+  command_topic: "holidayLights/commands1"
+  rgb: true
+  qos: 1
+- platform: mqtt_json
+  name: "Holiday Lights Color 2"
+  state_topic: "holidayLights/state2"
+  command_topic: "holidayLights/commands2" 
+  rgb: true
+  qos: 1
+- platform: mqtt_json
+  name: "Holiday Lights Color 3"
+  state_topic: "holidayLights/state3"
+  command_topic: "holidayLights/commands3"  
+  rgb: true
+  qos: 1
+ #_______configuration yaml________________________________
+input_number:
+  led_identification:
+    name: LED identification
+    initial: 0
+    min: 0
+    max: 500
+    step: 1
+  
+
+#________groups yaml_______________
+houseLights:
+    name: Holiday Lights
+    control: hidden
+    entities:     
+      - light.holiday_lights
+      - light.holiday_lights_color_1
+      - light.holiday_lights_color_2
+      - light.holiday_lights_color_3
+      - switch.add_glitter
+      - switch.add_lightning
+      - switch.audio_effects
+      - input_number.led_identification
+      - input_boolean.valentines
+      - input_boolean.st_patrics
+      - input_boolean.easter
+      - input_boolean.memorial_day
+      - input_boolean.july_4th
+      - input_boolean.labor_day
+      - input_boolean.halloween
+      - input_boolean.thanksgiving
+      - input_boolean.christmas
